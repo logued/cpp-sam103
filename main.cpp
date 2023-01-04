@@ -9,7 +9,7 @@ using namespace std;
 int add(int,int);
 void swap_by_value(int,int);
 void swap_by_reference(int&,int&) ;
-int multiply( const int & a, const int & b );
+int multiply(const int &, const int &);
 
 int main() {
     cout << "sam103 - Functions - pass-by-value v. pass-by-reference" << endl;
@@ -20,10 +20,12 @@ int main() {
     int x=3;
     int y=4;
     cout << "Initial variable values: x=" << x << ", y="<<y << endl;
+
     int sum = add(x,y);
     cout << "Sum of x and y = " << sum << endl;
 
     swap_by_value(x,y); // attempt to swap around the values of x and y
+
     cout << "After attempted swap : x=" << x << ", y="<<y << endl;
     cout << "You should see that the values in x and y have NOT been swapped." << endl;
     cout << "This is because the function simply swapped copies of the values taken from x and y, " << endl;
@@ -33,6 +35,7 @@ int main() {
     // Using REFERENCE Parameters (or Pass-By-Reference)
     //
     swap_by_reference( x, y ) ;
+
     cout << "After attempted swap : x=" << x << ", y="<<y << endl;
     cout << "You should see that the values in x and y HAVE BEEN Swapped." << endl;
     cout << "This is because the function used REFERENCES to the variables x and y, " << endl;
@@ -62,8 +65,8 @@ int add( int a, int b) {
 //
 void swap_by_value( int a, int b) {
     int temp = a;
-    b = a;
-    a = temp;
+    a = b;
+    b = temp;
 }
 
 // The parameters in this function are declared as References to type int.
@@ -76,8 +79,8 @@ void swap_by_value( int a, int b) {
 //
 void swap_by_reference( int& a, int & b) {
     int temp = a;
-    b = a;
-    a = temp;
+    a = b;
+    b = temp;
 }
 
 // We can specify that a parameter is of type "reference to a constant int", so that it can
@@ -94,8 +97,8 @@ int multiply( const int & a, const int & b ) {      // reference parameters
 // We will see later that reference parameters are usually more efficient than pass-by-value.
 
 //TODO
-// In main(), declare a  variable "double height = 1.86;"
+// In main(), declare a variable "double height = 1.86;"
 // Call a method named grow(height);
 // Write the grow() method to use a reference parameter that will increase the value in the
-// variable height by 50%  (so, multiply by 1.5 ).
+// variable height value by 50%  (so, multiply by 1.5 ).
 // The grow() function will not return a value. (return type will be void).
