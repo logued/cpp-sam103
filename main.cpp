@@ -6,6 +6,7 @@
 #include <iostream>
 using namespace std;
 
+// Function Prototypes (Function Declarations)
 int add(int,int);
 void swap_by_value(int,int);
 void swap_by_reference(int&,int&) ;
@@ -60,21 +61,21 @@ int add( int a, int b) {
 // This will swap the local values in a and b, however, it will not change the
 // values in the original variables x and y, because copies of the values from x and y
 // have been passed into the corresponding a and b, but a and b have NO access to
-// the variables x and y in main().
+// the variables x and y in main().(x & y are not in SCOPE inside this function)
 // This function has access only to copies of values from main() that were passed in by value.
 //
 void swap_by_value( int a, int b) {
     int temp = a;
     a = b;
-    b = temp;
+    b = temp;           // WILL FAIL !
 }
 
 // The parameters in this function are declared as References to type int.
-// a is a reference to an int, and when called, a is bound to the variable x.
+// 'a' is a reference to an int, and when called, 'a' is bound to the variable x.
 // 'a' really becomes another name for the variable x, and anything done to 'a' is
 // actually really carried out on x.   Similarly, b is another name for y.
 // 'b' is a reference to 'y'.
-// These are reference parameters.
+// These ( a and b) are reference parameters.
 // Unlike pass-by-value, no copies of the values are passed into the function.
 //
 void swap_by_reference( int& a, int & b) {
@@ -86,7 +87,7 @@ void swap_by_reference( int& a, int & b) {
 // We can specify that a parameter is of type "reference to a constant int", so that it can
 // not be used to change the value in the variable that it is accessing (referring to).
 // If we know that we don't need to change the value, then it is good practice to always use
-// a reference to const.
+// a reference to const type.
 // Note, for the swap above, we don't use const as we need to change the values in x and y.
 //
 int multiply( const int & a, const int & b ) {      // reference parameters
@@ -94,11 +95,17 @@ int multiply( const int & a, const int & b ) {      // reference parameters
     return a * b;
 }
 
-// We will see later that reference parameters are usually more efficient than pass-by-value.
+/// We will see later in the course that reference parameters are
+/// usually more efficient than pass-by-value.
 
-//TODO
-// In main(), declare a variable "double height = 1.86;"
-// Call a method named grow(height);
-// Write the grow() method to use a reference parameter that will increase the value in the
-// variable height value by 50%  (so, multiply by 1.5 ).
-// The grow() function will not return a value. (return type will be void).
+///TODO
+/// Q1. In main(), declare a variable "double height = 1.86;"
+/// Write and call a method named grow_pass_by_value(double h) that will accept the
+/// height , will multiply it by 1.5, and will return the increased value.
+/// In main, assign the returned value to a variable and print it.
+
+///TODO
+/// Q2. Write a function  grow_pass_by_reference( ?? ) that will use a reference parameter
+/// so that the height (in main) can be increased by 1.5.
+/// You must use a reference parameter in this case.
+/// In this case, the function returns "void" (i.e. nothing)
